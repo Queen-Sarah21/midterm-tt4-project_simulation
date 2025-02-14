@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
     index: "./index.js",
-    // list: "./list.js",
+    list: "./list.js",
     // edit: "./edit.js",
   },
   output: {
@@ -43,19 +43,19 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./index.html",
-      chunks: ["index", "main"],
+      chunks: ["index", "index"],
       filename: "index.html",
     }),
-    // new HtmlWebpackPlugin({
-    //   template: "./list.html",
-    //   chunks: ["list", "main"],
-    //   filename: "list.html",
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./edit.html",
-    //   chunks: ["edit", "main"],
-    //   filename: "edit.html",
-    // }),
+    new HtmlWebpackPlugin({
+      template: "./list.html",
+      chunks: ["list", "index"],
+      filename: "list.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./edit.html",
+      chunks: ["edit", "index"],
+      filename: "edit.html",
+    }),
   ],
   devServer: {
     static: "./dist",

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="edit.scss">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Student</h1>
+        <form id="editForm">
+            <div class="form-group">
+                <label for="code">Code</label>
+                <input type="text" class="form-control" id="code" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+                <label for="course">Course</label>
+                <input type="text" class="form-control" id="course">
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Update</button>
+        </form>
+    </div>
+    <script src="edit.js"></script>
+</body>
+</html>
