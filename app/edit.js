@@ -1,44 +1,50 @@
+import * as bootstrap from "bootstrap";
+import './index.scss';
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Get query parameters from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const studentCode = urlParams.get('code');
+    // Get form elements
+    const editForm = document.getElementById("editForm");
+    const codeInput = document.getElementById("code");
+    const nameInput = document.getElementById("name");
+    const courseInput = document.getElementById("course");
+    const dobInput = document.getElementById("dob");
 
-    // Fetch the stored student data
-    let storedData = JSON.parse(localStorage.getItem('studentsData')) || [];
-
-    // Find the student to edit
-    const student = storedData.find(s => s.code === studentCode);
-
-    // Populate the form fields with the student's existing data
-    if (student) {
-        document.getElementById("code").value = student.code;
-        document.getElementById("name").value = student.name;
-        document.getElementById("course").value = student.course;
-        document.getElementById("dob").value = student.dob;
+    // Function to get student data from localStorage or URL parameters
+    function getStudentData() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const studentData = {
+            code: urlParams.get("code") || "",
+            name: urlParams.get("name") || "",
+            course: urlParams.get("course") || "",
+            dob: urlParams.get("dob") || ""
+        };
+        return studentData;
     }
 
-    // Handle form submission to update the student
-    document.getElementById("editForm").addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent form reload behavior
+    // Populate the form with student data
+    const student = getStudentData();
+    codeInput.value = student.code;
+    nameInput.value = student.name;
+    courseInput.value = student.course;
+    dobInput.value = student.dob;
 
-        // Get the updated values from the form
+    // Handle form submission
+    editForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Get updated values
         const updatedStudent = {
-            code: document.getElementById("code").value,
-            name: document.getElementById("name").value,
-            course: document.getElementById("course").value,
-            dob: document.getElementById("dob").value,
+            code: codeInput.value,
+            name: nameInput.value,
+            course: courseInput.value,
+            dob: dobInput.value
         };
 
-        // Update the student in the stored data
-        const index = storedData.findIndex(s => s.code === studentCode);
-        if (index !== -1) {
-            storedData[index] = updatedStudent; // Update the specific student
-        }
+        // Simulate saving updated data (You can replace this with an API call)
+        localStorage.setItem("editedStudent", JSON.stringify(updatedStudent));
+        alert("Student information updated successfully!");
 
-        // Save the updated data back to local storage
-        localStorage.setItem('studentsData', JSON.stringify(storedData));
-
-        // Redirect to the list page to see the changes
+        // Redirect back to the list page (modify as needed)
         window.location.href = "list.html";
     });
 });
