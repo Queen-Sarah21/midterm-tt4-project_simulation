@@ -1,3 +1,6 @@
+import * as bootstrap from "bootstrap";
+import './index.scss';
+
 document.addEventListener("DOMContentLoaded", () => {
     // Get stored student data from local storage or use mock data
     const storedData = JSON.parse(localStorage.getItem('studentsData')) || [

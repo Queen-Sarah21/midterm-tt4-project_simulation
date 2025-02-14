@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     index: "./index.js",
     list: "./list.js",
-    // edit: "./edit.js",
+    edit: "./edit.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
